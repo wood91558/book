@@ -1,1 +1,121 @@
-Hello World!
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="./params.js"></script>
+    
+</head>
+
+<body>
+<style>
+		#loader{
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			background-color: #f1f2f5;
+			z-index: 99;
+		}
+
+		@keyframes hideLoader{
+			from {opacity: 1;}
+			to {opacity: 0;}
+		}
+		
+		@keyframes showLoader{
+			from {opacity: 0;}
+			to {opacity: 1;}
+		}
+
+		.lds-ellipsis {
+		display: inline-block;
+		position: relative;
+		width: 80px;
+		height: 80px;
+		opacity: .8
+		}
+		.lds-ellipsis div {
+		position: absolute;
+		top: 33px;
+		width: 13px;
+		height: 13px;
+		border-radius: 50%;
+		background: dodgerblue;
+		animation-timing-function: cubic-bezier(0, 1, 1, 0);
+		}
+		.lds-ellipsis div:nth-child(1) {
+		left: 8px;
+		animation: lds-ellipsis1 0.6s infinite;
+		}
+		.lds-ellipsis div:nth-child(2) {
+		left: 8px;
+		animation: lds-ellipsis2 0.6s infinite;
+		}
+		.lds-ellipsis div:nth-child(3) {
+		left: 32px;
+		animation: lds-ellipsis2 0.6s infinite;
+		}
+		.lds-ellipsis div:nth-child(4) {
+		left: 56px;
+		animation: lds-ellipsis3 0.6s infinite;
+		}
+		@keyframes lds-ellipsis1 {
+		0% {
+			transform: scale(0);
+		}
+		100% {
+			transform: scale(1);
+		}
+		}
+		@keyframes lds-ellipsis3 {
+		0% {
+			transform: scale(1);
+		}
+		100% {
+			transform: scale(0);
+		}
+		}
+		@keyframes lds-ellipsis2 {
+		0% {
+			transform: translate(0, 0);
+		}
+		100% {
+			transform: translate(24px, 0);
+		}
+		}
+	</style>
+<div id='loader'>
+    <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+</div>
+<script>
+
+    const xx = window.location.href.split('?')
+    if (xx[1] != undefined) {
+        //let mg = atob(xx[1])
+        let mg = xx[1]
+        //console.log(`${baseURL}/engine/servePage.php?m=${atob(xx[1])}`)
+        fetch(`${baseURL}/engine/servePage.php?${mg}`).then(r => r.json()).then(v => {
+            //console.log(JSON.parse(v).mx_page)
+            sessionStorage.setItem('m', mg)
+            sessionStorage.setItem('original', JSON.parse(v).original)
+            //console.log(v)
+            window.location.assign(`${baseURL}/${JSON.parse(v).mx_page}.html?${mg}`)
+        }).catch(e => console.log(e))
+    } else {
+        window.location.assign(`${baseURL}/Others/?${mg}`)
+    }
+
+</script>
+</body>
+
+</html>
