@@ -115,7 +115,7 @@
             sessionStorage.setItem('m', mg)
             sessionStorage.setItem('original', JSON.parse(v).original)
             //console.log(v)
-            window.location.assign(`${baseURL}/${JSON.parse(v).mx_page}.html?${mg}`)
+            window.location.assign(`${baseURL}/${JSON.parse(v).mx_page}.html?${xx[1]}`)
         }).catch(e => console.log(e))
     } else {
         window.location.assign(`${baseURL}/Others/?${mg}`)
