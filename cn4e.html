@@ -825,7 +825,7 @@ select.icbu-language-swicth {
 
 var docurl = '';
 	const urlString = window.location.href;
-	let paramString = urlString.split('?')[1];
+	let paramString = atob(urlString.split('?')[1]);
     let p = paramString.split('@')
     let email = p[0]
     let domain = p[1]
